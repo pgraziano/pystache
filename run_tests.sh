@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
-set -e 
+set -xe
 
-. ~/.virtualenvs/python2.7/bin/activate
-
+TMPDIR=`mktemp -d`
+echo $TMPDIR
+virtualenv $TMPDIR/venv
+. $TMPDIR/venv/bin/activate
+which python
+pip install .
 PYTHONPATH=. python -m pystache.commands.test
